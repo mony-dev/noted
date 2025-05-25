@@ -23,12 +23,62 @@ async function main() {
               ],
             },
           },
+          {
+            name: "Backtend",
+            tasks: {
+              create: [
+                {
+                  title: "Fix API bug",
+                  priority: "URGENT",
+                  startTime: "10:00",
+                  endTime: "11:00",
+                },
+              ],
+            },
+          },
         ],
       },
     },
   });
-
-  console.log("Seed completed:", work);
+  const personal = await prisma.categoryType.upsert({
+    where: { name: "Personal" },
+    update: {},
+    create: {
+        name: "Personal",
+        emoji: "🏠",
+        categories: {
+          create: [
+            {
+              name: "Home",
+              tasks: {
+                create: [
+                  {
+                    title: "Sweep the house",
+                    priority: "LOW",
+                    startTime: "09:00",
+                    endTime: "11:00",
+                  },
+                ],
+              },
+            },
+            {
+              name: "Shopping",
+              tasks: {
+                create: [
+                  {
+                    title: "Buy groceries",
+                    priority: "HIGH",
+                    startTime: "10:00",
+                    endTime: "11:00",
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
+  });
+  console.log("Seed completed:", { work, personal });
 }
 
 main()
