@@ -1,12 +1,19 @@
-How to Run the Project
-Run on Local Machine
+===📦 Tech Stack===
+Next.js 14 (App Router)
+Prisma ORM
+PostgreSQL (via Docker)
+MUI (Material UI)
+Zod for validation
 
-npm install              # Install all packages    
-npx prisma db push       # Setup the database schema
-npm run dev              # Start development server (http://localhost:3000)
+===🚀 Setup & Run with Docker===
+1. Create .env file
+# DATABASE_URL="postgresql://postgres:postgres@db:5432/noted_db"
+# API_SECRET="fortestapikey123"
 
-#Please run PostgreSQL and .env 
-
-Run with Docker
-docker-compose up --build       #Start Next.js + PostgreSQL
-docker-compose exex web npx prisma db push      #  Apply schema inside container
+2.Run with Docker
+# RUN Docker 
+docker-compose up --build       
+# Migrate db
+docker-compose exec web npx prisma db push    
+# Seed Example data
+docker-compose exec web npx tsx prisma/seed.ts

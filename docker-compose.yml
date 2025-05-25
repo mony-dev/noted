@@ -1,4 +1,4 @@
-version: '3.8'
+# version: '3.8'
 
 services:
   web:
@@ -10,12 +10,11 @@ services:
       - .env
     depends_on:
       - db
-    volumes:
-      - .:/app
-
   db:
     image: postgres:15
     container_name: noted_db
+    ports:
+      - "15432:5432"
     restart: always
     environment:
       POSTGRES_USER: postgres
